@@ -28,5 +28,8 @@ echo "Atualizado com sucesso!";
 
 } catch (Exception $e) {
     echo "Falhou". $e->getMessage();
+} finally {
+    $pdo = null;
+    echo "Conexão encerrada!";
 }
 ?>
