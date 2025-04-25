@@ -25,6 +25,18 @@ $sql->execute();
 echo "Atualizado com sucesso!";
 } catch (PDOException $e) {
     echo "Falhou 1". $e->getMessage();
+} catch (Error $e) {
+    echo "Falhou 2". $e->getMessage();
+} catch (TypeError $e) {
+    echo "Falhou 3". $e->getMessage();
+} catch (ArgumentCountError $e) {
+    echo "Falhou 4". $e->getMessage();
+} catch (ParseError $e) {
+    echo "Falhou 5". $e->getMessage();
+} catch (ArithmeticError $e) {
+    echo "Falhou 6". $e->getMessage();
+} catch (DivisionByZeroError $e) {
+    echo "Falhou 7". $e->getMessage();
 
 } catch (Exception $e) {
     echo "Falhou". $e->getMessage();
