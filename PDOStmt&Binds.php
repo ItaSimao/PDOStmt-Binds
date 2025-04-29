@@ -37,7 +37,20 @@ echo "Atualizado com sucesso!";
     echo "Falhou 6". $e->getMessage();
 } catch (DivisionByZeroError $e) {
     echo "Falhou 7". $e->getMessage();
+} catch (AssertionError $e) {
 
+
+    echo "Falhou 8". $e->getMessage();
+} catch (ErrorException $e) {
+    echo "Falhou 9". $e->getMessage();
+} catch (TypeError $e) {
+    echo "Falhou 10". $e->getMessage();
+} catch (ValueError $e) {
+    echo "Falhou 11". $e->getMessage();
+} catch (RuntimeException $e) {
+    echo "Falhou 12". $e->getMessage();
+} catch (LogicException $e) {
+    echo "Falhou 13". $e->getMessage();
 } catch (Exception $e) {
     echo "Falhou". $e->getMessage();
 } finally {
