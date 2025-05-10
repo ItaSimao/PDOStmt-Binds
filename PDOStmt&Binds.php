@@ -7,15 +7,23 @@ $pass = '';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   => false,
+];
 
 try {
     $pdo = new PDO($dsn, $user, $pass);
 
+    // Definindo o charset para utf8mb4
+    $pdo->exec("SET NAMES utf8mb4");
 $nome = 'Jesus';
 $id = 3;
 
 $sql = "UPDATE usuarios SET nome = :novonome WHERE id = :id";
 $sql = $pdo->prepare($sql);
+// Bind dos parâmetros
 
 $sql->bindValue(':novonome', $nome);
 $sql->bindValue(':id', $id);
@@ -38,8 +46,6 @@ echo "Atualizado com sucesso!";
 } catch (DivisionByZeroError $e) {
     echo "Falhou 7". $e->getMessage();
 } catch (AssertionError $e) {
-
-
     echo "Falhou 8". $e->getMessage();
 } catch (ErrorException $e) {
     echo "Falhou 9". $e->getMessage();
@@ -54,6 +60,9 @@ echo "Atualizado com sucesso!";
 } catch (Exception $e) {
     echo "Falhou". $e->getMessage();
 } finally {
+
+    // Fechar a conexão
+    // $pdo = null;
     $pdo = null;
     echo "Conexão encerrada!";
 }
